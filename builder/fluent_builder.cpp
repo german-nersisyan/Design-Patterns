@@ -21,11 +21,12 @@ class ReportBuilder {
 
 public:
 
-	virtual void buildHeader() = 0;
-	virtual void buildBody() = 0;
-    virtual void buildFooter() = 0;
+	virtual ReportBuilder& buildHeader() = 0;
+	virtual ReportBuilder& buildBody() = 0;
+    virtual ReportBuilder& buildFooter() = 0;
     
     virtual Report* getReport() = 0;
+    virtual ~ReportBuilder() = default;
     
 };
 
@@ -38,19 +39,22 @@ public:
         report = new Report();
     }
     
-    virtual void buildHeader() override 
+    virtual ReportBuilder& buildHeader() override 
     {
         report->header = "PDF Header";
+        return *this;
     }
     
-    virtual void buildBody() override 
+    virtual ReportBuilder& buildBody() override 
     {
         report->body = "PDF Body";
+        return *this;
     }
     
-    virtual void buildFooter() override 
+    virtual ReportBuilder& buildFooter() override 
     {
         report->footer = "PDF Footer";
+        return *this;
     }
     
     virtual Report* getReport() override
@@ -73,19 +77,22 @@ public:
         report = new Report();
     }
     
-    virtual void buildHeader() override 
+    virtual ReportBuilder& buildHeader() override 
     {
         report->header = "DOCX Header";
+        return *this;
     }
     
-    virtual void buildBody() override 
+    virtual ReportBuilder& buildBody() override 
     {
         report->body = "DOCX Body";
+        return *this;
     }
     
-    virtual void buildFooter() override 
+    virtual ReportBuilder& buildFooter() override 
     {
         report->footer = "DOCX Footer";
+        return *this;
     }
     
     virtual Report* getReport() override
@@ -99,42 +106,19 @@ private:
 
 };
 
-class ReportDirector {
-
-public:
-    ReportDirector(ReportBuilder* builder) : builder(builder) {}
-    
-    void construct()
-    {
-        std::cout << "Consructing Report" << std::endl;
-        builder->buildHeader();
-        builder->buildBody();
-        builder->buildFooter();
-    }
-
-private:
-
-    ReportBuilder* builder;
-};
-
 int main()
 {
-    ReportBuilder* pdfreportbuilder = new PDFReportBuilder();
-    ReportDirector* director = new ReportDirector(pdfreportbuilder);
-    director->construct();
-    Report* pdfreport = pdfreportbuilder->getReport();
+    ReportBuilder* pdfbuilder = new PDFReportBuilder();
+    Report* pdfreport = pdfbuilder->buildHeader().buildBody().buildFooter().getReport();
     pdfreport->show();
     
-    ReportBuilder* docxreportbuilder = new DOCXReportBuilder();
-    director = new ReportDirector(docxreportbuilder);
-    director->construct();
-    Report* docxreport = docxreportbuilder->getReport();
+    ReportBuilder* docxbuilder = new DOCXReportBuilder();
+    Report* docxreport = docxbuilder->buildHeader().buildBody().buildFooter().getReport();
     docxreport->show();
     
     delete pdfreport;
     delete docxreport;
-    delete pdfreportbuilder;
-    delete docxreportbuilder;
-    delete director;
+    delete pdfbuilder;
+    delete docxbuilder;
 	return 0;
 }

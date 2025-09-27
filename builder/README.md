@@ -17,3 +17,5 @@ The code shows how the Builder Design Pattern allows the creation of reports in 
 4. **DOCXReportBuilder**: A concrete builder that constructs a report in DOCX format.
 
 5. **ReportDirector**: Uses a `ReportBuilder` to construct a report. It orchestrates the sequence of building steps, but it doesn't know the specifics of how each type of report is built.
+
+Additionally, **Fluent Builder** versions of the report builders are provided, which allow for a more fluid and expressive way to construct the reports. With the Fluent Builder, the client can chain the method calls together for better readability and ease of use.
