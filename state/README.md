@@ -1,4 +1,4 @@
-# 🛗🏢 Elevator Control System with state pattern
+# ↕️🏢 Elevator Control System with state pattern
 
 This project simulates a basic Elevator Control System that manages multiple elevators and handles requests to move between floors. It implements a **State Design Pattern** to manage the different elevator states, including idle, moving up, moving down, and doors open/closed.
 
