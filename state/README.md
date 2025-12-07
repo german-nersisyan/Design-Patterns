@@ -39,3 +39,9 @@ This project simulates a basic Elevator Control System that manages multiple ele
   
 - **moveToFloor(targetFloor):**
   - Moves the elevator to the target floor, changing states based on whether the elevator needs to move up or down.
+
+- **openDoors() & closeDoors():**
+  - Controls the opening and closing of elevator doors.
+
+- **assignElevatorToFloor():**
+  - Assigns the nearest idle elevator to the requested floor.
