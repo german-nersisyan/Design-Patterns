@@ -1,0 +1,4 @@
+users.age,users.city,users.id,users.isStudent,users.name
+14,New York,101,true,Alex
+15,Los Angeles,102,false,Sam
+13,Chicago,103,true,Lily

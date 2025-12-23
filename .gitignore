@@ -1,0 +1,30 @@
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.VC.db
+*.opendb
+
+# Build output
+Debug/
+x64/
+x86/
+
+# Compiled binaries and intermediates
+*.obj
+*.pdb
+*.idb
+*.ilk
+*.tlog
+*.log
+*.lastbuildstate
+*.ipch
+
+# Ignore all .exe except Release/
+*.exe
+!Release/*.exe
+
+# Others
+*.cache
+*.tmp
+*.bak
